@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oliveira Premiere | Casa de Frangos em Nova Serrana - MG</title>
+    
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #c0392b;   /* Vermelho escuro elegante */
+            --secondary: #d35400; /* Laranja queimado premium */
+            --gold: #f39c12;      /* Dourado accent */
+            --dark: #1e272e;
+            --light: #f8f9fa;
+            --gray: #6f7275;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 0.4rem;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .top-bar span {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Header / Navegação */
+        header {
+            background-color: #ffffff;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        .logo h1 {
+            font-size: 1.6rem;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+
+        .logo h1 span {
+            color: var(--primary);
+        }
+
+        .logo p {
+            font-size: 0.75rem;
+            color: var(--gray);
+            font-weight: 300;
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Slider / Carrossel Hero */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            min-height: 420px;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* Imagens Ilustrativas para o Banner */
+        .slide:nth-child(1) {
+            background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=1350&q=80');
+        }
+
+        .slide:nth-child(2) {
+            background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=1350&q=80');
+        }
+
+        .slide:nth-child(3) {
+            background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=1350&q=80');
+        }
+
+        .slide-content {
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            max-width: 800px;
+        }
+
+        .slide-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            font-weight: 700;
+        }
+
+        .slide-content p {
+            font-size: 1.2rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(192, 57, 43, 0.4);
+        }
+
+        .btn:hover {
+            background: #a93226;
+            transform: translateY(-2px);
+        }
+
+        /* Setas de Controle do Slider */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            font-size: 1.5rem;
+            padding: 0.8rem 1.2rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: var(--primary);
+        }
+
+        .prev { left: 15px; }
+        .next { right: 15px; }
+
+        /* Conteúdo Principal */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 3.5rem auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        /* Grid de Cards */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-top: 4px solid var(--primary);
+        }
+
+        .card h3 {
+            color: var(--dark);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .card h3 i {
+            color: var(--primary);
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .info-list i {
+            color: var(--secondary);
+            margin-top: 4px;
+        }
+
+        /* Rodapé */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 5% 1rem 5%;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #2d3748;
+            padding-top: 1.2rem;
+            font-size: 0.85rem;
+            color: #a0aec0;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .slide-content h2 {
+                font-size: 1.8rem;
+            }
+            .slide-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Faixa Topo -->
+    <div class="top-bar">
+        <span>OLIVEIRA PREMIERE</span> • Qualidade e Sabor em Nova Serrana / MG
+    </div>
+
+    <!-- Cabeçalho / Menu -->
+    <header>
+        <div class="logo">
+            <h1>Oliveira <span>Premiere</span></h1>
+            <p>Casa de Frangos Oliveira LTDA</p>
+        </div>
+        <nav>
+            <a href="#sobre">Nossa Loja</a>
+            <a href="#localizacao">Onde Estamos</a>
+            <a href="#dados">Informações Legais</a>
+        </nav>
+    </header>
+
+    <!-- Slider Interativo -->
+    <div class="slider-container">
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <div class="slide-content">
+                <h2>O Padrão Premiere Que Você Merece</h2>
+                <p>Produtos de alta qualidade, assados suculentos e sabor incomparável para a sua mesa.</p>
+                <a href="#localizacao" class="btn">Venha nos Visitar</a>
+            </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Cortes Selecionados e Sabor Especial</h2>
+                <p>Preparo feito com ingredientes rigorosamente selecionados e receitas exclusivas.</p>
+                <a href="#sobre" class="btn">Conheça Nossa Proposta</a>
+            </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Sua Casa de Frangos no Frei Paulo</h2>
+                <p>Localização privilegiada na Rua Padre Libério, com instalações completas nas Salas 1 e 2.</p>
+                <a href="#localizacao" class="btn">Como Chegar</a>
+            </div>
+        </div>
+
+        <!-- Botões do Slider -->
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+
+    <!-- Conteúdo da Página -->
+    <div class="container">
+        
+        <!-- Seção Sobre -->
+        <section id="sobre">
+            <div class="section-title">
+                <h2>Sobre a Oliveira Premiere</h2>
+            </div>
+            <p style="text-align: center; max-width: 850px; margin: 0 auto 2.5rem auto; color: var(--gray);">
+                A <strong>Oliveira Premiere (Casa de Frangos Oliveira LTDA)</strong> nasceu com a missão de oferecer uma experiência diferenciada no segmento gastronômico e avícola em Nova Serrana. Combinando atendimento acolhedor, higiene rigorosa e produtos de excelência, levamos o melhor sabor para o seu almoço em família ou dia a dia.
+            </p>
+        </section>
+
+        <!-- Seção Localização & Informações Cadastrais -->
+        <section id="localizacao">
+            <div class="grid-2">
+                <!-- Card de Localização -->
+                <div class="card">
+                    <h3><i class="fa-solid fa-location-dot"></i> Onde Estamos</h3>
+                    <ul class="info-list">
+                        <li>
+                            <i class="fa-solid fa-map-pin"></i>
+                            <div>
+                                <strong>Endereço:</strong><br>
+                                Rua Padre Libério, 393 - Sala 1 e Sala 2<br>
+                                Bairro: Frei Paulo<br>
+                                CEP: 35523-086
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-city"></i>
+                            <div>
+                                <strong>Cidade / Estado:</strong><br>
+                                Nova Serrana - Minas Gerais (MG)
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <div>
+                                <strong>Telefone para Pedidos:</strong><br>
+                                (37) 998xx-xxxx
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card de Dados Legais -->
+                <div class="card" id="dados">
+                    <h3><i class="fa-solid fa-building"></i> Dados da Empresa</h3>
+                    <ul class="info-list">
+                        <li>
+                            <i class="fa-solid fa-id-card"></i>
+                            <div>
+                                <strong>Nome Fantasia:</strong><br>
+                                Oliveira Premiere
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-file-contract"></i>
+                            <div>
+                                <strong>Razão Social:</strong><br>
+                                Casa de Frangos Oliveira LTDA
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-hashtag"></i>
+                            <div>
+                                <strong>CNPJ:</strong> 64.790.719/0001-56
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <div>
+                                <strong>Situação Cadastral:</strong> Ativa
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3 style="color: var(--gold); margin-bottom: 0.5rem;">Oliveira Premiere</h3>
+                <p>Casa de Frangos Oliveira LTDA</p>
+                <p style="font-size: 0.85rem; color: #a0aec0; margin-top: 5px;">O melhor padrão gastronômico para a sua mesa.</p>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 0.5rem; color: #fff;">Endereço</h4>
+                <p>Rua Padre Libério, 393 - Sala 1 e Sala 2</p>
+                <p>Frei Paulo - Nova Serrana / MG</p>
+                <p>CEP: 35523-086</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Casa de Frangos Oliveira LTDA - CNPJ: 64.790.719/0001-56. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Script para Troca de Slides -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide) => slide.classList.remove('active'));
+            
+            if (index >= slides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = slides.length - 1;
+            } else {
+                currentSlide = index;
+            }
+
+            slides[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Transição automática a cada 5 segundos
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+    </script>
+</body>
+</html>
